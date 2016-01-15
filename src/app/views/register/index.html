@@ -1,0 +1,14 @@
+<form>
+  <md-input-container class="md-block">
+    <label>Name</label>
+    <input ng-model="name">
+  </md-input-container>
+  <md-input-container class="md-block">
+    <label>Firma</label>
+    <input ng-model="company">
+  </md-input-container>
+  <md-input-container class="md-block" ng-if="company.length > 0">
+    <label>Ust-ID</label>
+    <input ng-model="ustid">
+  </md-input-container>
+</form>
