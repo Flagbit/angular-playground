@@ -223,6 +223,52 @@
 }).call(this);
 
 (function() {
+  var IndexController;
+
+  IndexController = function($scope) {
+    var __construct;
+    __construct = function() {};
+    return __construct();
+  };
+
+  app.controller("IndexController", IndexController);
+
+}).call(this);
+
+(function() {
+  var NavController;
+
+  NavController = function($scope, $route, $location) {
+    var __construct, filterRoutes;
+    __construct = function() {
+      return filterRoutes();
+    };
+    $scope.routes = [];
+    $scope.clickHandler = function(route) {
+      return $location.path(route.originalPath);
+    };
+    filterRoutes = function() {
+      var path, ref, results, route;
+      ref = $route.routes;
+      results = [];
+      for (path in ref) {
+        route = ref[path];
+        if (!route.redirectTo) {
+          results.push($scope.routes.push(route));
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+    return __construct();
+  };
+
+  app.controller("NavController", NavController);
+
+}).call(this);
+
+(function() {
   var RegisterController;
 
   RegisterController = function($scope) {
@@ -237,17 +283,24 @@
 
 (function() {
   app.config(function($routeProvider) {
-    return $routeProvider.when("/finder", {
+    return $routeProvider.when("/", {
+      controller: "IndexController",
+      templateUrl: "assets/app/views/index/index.html",
+      title: "Home"
+    }).when("/finder", {
       controller: "FinderController",
-      templateUrl: "assets/app/views/finder/index.html"
+      templateUrl: "assets/app/views/finder/index.html",
+      title: "Finder"
     }).when("/filter", {
       controller: "FilterController",
-      templateUrl: "assets/app/views/filter/index.html"
+      templateUrl: "assets/app/views/filter/index.html",
+      title: "Filter"
     }).when("/register", {
       controller: "RegisterController",
-      templateUrl: "assets/app/views/register/index.html"
+      templateUrl: "assets/app/views/register/index.html",
+      title: "Register"
     }).otherwise({
-      redirectTo: "/finder"
+      redirectTo: "/index"
     });
   });
 

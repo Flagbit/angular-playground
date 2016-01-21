@@ -39,6 +39,15 @@ md-grid-list md-grid-tile {
 md-grid-list .dndPlaceholder {
   display: none; }
 
+.nav-main {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .nav-main li {
+    margin-right: 30px; }
+    .nav-main li a {
+      display: block; }
+
 .tt_widget {
   padding: 8px;
   width: 350px;

@@ -12,10 +12,24 @@
     <link rel="stylesheet" href="assets/lib/angular-material/angular-material.css">
     <link rel="stylesheet" href="assets/app.css">
   </head>
-  <body>
-    <div class="container" ng-view>
+  <body layout="column">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <nav ng-controller="NavController">
+          <ul class="nav-main" layout="row">
+            <li ng-repeat="route in routes">
+              <a href="" ng-click="clickHandler(route)">{{route.title}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </md-toolbar>
+    <div class="container" layout="row" flex>
+      <md-content class="md-padding" layout="row" layout-wrap layout-align="center start" ng-view>
+      </md-content>
     </div>
     <script src="assets/lib/underscore/underscore-min.js"></script>
+    <script src="assets/lib/lazysizes/lazysizes.min.js"></script>
     <script src="assets/lib/angular/angular.min.js"></script>
     <script src="assets/lib/angular-route/angular-route.min.js"></script>
     <script src="assets/lib/angular-aria/angular-aria.min.js"></script>

@@ -1,74 +1,54 @@
-<md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
-  <div flex-offset="20" flex="80" layout="row" layout-align="space-between">
-    <div>
-      <label>Items per Page</label>
-      <input type="number" ng-model="itemsPerPage[selectedLayout]">
-    </div>
-    <div>
-      <md-radio-group layout="row" ng-model="selectedLayout">
-        <md-radio-button ng-repeat="layout in layouts" ng-value="layout">{{layout}}</md-radio-button>
-      </md-radio-group>
-    </div>
+<div flex-offset="20" flex="80" layout="row" layout-align="space-between">
+  <div>
+    <label>Items per Page</label>
+    <input type="number" ng-model="itemsPerPage[selectedLayout]">
   </div>
-  <div flex="20">
-    <h2>Searchterm</h2>
-    <md-input-container class="md-block">
-      <label>Suchbegriff</label>
-      <input ng-model="filterQuery" ng-model-options="{debounce: 350}">
-    </md-input-container>
-    <h2>Pricerange</h2>
-    <label>from</label>
-    <input type="text" size="3" ng-model="range.from">
-    <label>to</label>
-    <input type="text" size="3" ng-model="range.to">
-    <section data-range-slider
-             class="range-slider"
-             step="0.5"
-             ng-model="range"
-             min="0"
-             max="max"></section>
+  <div>
+    <md-radio-group layout="row" ng-model="selectedLayout">
+      <md-radio-button ng-repeat="layout in layouts" ng-value="layout">{{layout}}</md-radio-button>
+    </md-radio-group>
   </div>
-  <div flex="80">
-    <ul class="list-products"
-        layout="{{selectedLayout}}"
-        layout-wrap
-        layout-align="center start">
-      <li flex="33"
-          dir-paginate="item in items | rangeFilter: range | filter: filterQuery | itemsPerPage: itemsPerPage[selectedLayout]">
-        <div layout="{{layoutItems[selectedLayout]}}">
-          <div class="image-product">
-            <img ng-src="assets/img/touratech.jpg" class="md-card-image" alt="Washed Out">
-          </div>
-          <div class="text-content">
-            <h2>{{item.name}}</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-          </div>
-          <div>
-            <p>{{item.price | currency}}</p>
-          </div>
+</div>
+<div flex="20">
+  <h2>Searchterm</h2>
+  <md-input-container class="md-block">
+    <label>Suchbegriff</label>
+    <input ng-model="filterQuery" ng-model-options="{debounce: 350}">
+  </md-input-container>
+  <h2>Pricerange</h2>
+  <label>from</label>
+  <input type="text" size="3" ng-model="range.from">
+  <label>to</label>
+  <input type="text" size="3" ng-model="range.to">
+  <section data-range-slider
+           class="range-slider"
+           step="0.5"
+           ng-model="range"
+           min="0"
+           max="max"></section>
+</div>
+<div flex="80">
+  <ul class="list-products"
+      layout="{{selectedLayout}}"
+      layout-wrap
+      layout-align="center start">
+    <li flex="33"
+        dir-paginate="item in items | rangeFilter: range | filter: filterQuery | itemsPerPage: itemsPerPage[selectedLayout]">
+      <div layout="{{layoutItems[selectedLayout]}}">
+        <div class="image-product">
+          <img data-src="assets/img/touratech.jpg" class="lazyload md-card-image" alt="Washed Out">
         </div>
-      </li>
-    </ul>
-    <!--
-    <div flex="33" dir-paginate="item in items | rangeFilter: range | filter: filterQuery | itemsPerPage: itemsPerPage[selectedLayout]">
-      <md-card>
-        <img ng-src="/assets/img/touratech.jpg" class="md-card-image" alt="Washed Out">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{item.name}}</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
+        <div class="text-content">
+          <h2>{{item.name}}</h2>
           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
+        </div>
+        <div>
           <p>{{item.price | currency}}</p>
-        </md-card-actions>
-      </md-card>
-    </div>
-    -->
-  </div>
-  <div flex="100" layout="row" layout-align="end end">
-    <dir-pagination-controls></dir-pagination-controls>
-  </div>
-</md-content>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div flex="100" layout="row" layout-align="end end">
+  <dir-pagination-controls></dir-pagination-controls>
+</div>
